@@ -1,0 +1,146 @@
+    <% if user_signed_in? %>
+      <header id="header" style="position:fixed; z-index: 100;"></header>
+
+      <div id="notification"></div>
+
+      <div id="catalog-select" style="position:fixed;">
+        <div class="search">
+          <%= form_tag("/search", :method => "get") do %>
+              <%= text_field_tag(:query, nil, :placeholder => "Search") %>
+            <% end %>
+          <i class="fa fa-search"></i>
+        </div>
+
+        <h4 data-translate="movies">Movies</h4>
+        <ul class="categories">
+          <li class="active"><a href="/">Popular</a></li>
+          <li><%= link_to "Action", action_path %></li>
+          <li><%= link_to "Adventure", adventure_path %></li>
+          <li><%= link_to "Animation", animation_path %></li>
+          <li><%= link_to "Comedy", comedy_path %></li>
+          <li><%= link_to "Documentary", documentary_path %></li>
+          <li><%= link_to "Drama", drama_path %></li>
+          <li><%= link_to "Family", family_path %></li>
+          <li><%= link_to "Fantasy", fantasy_path %></li>
+          <li><%= link_to "Film-Noir", filmnoir_path %></li>
+          <li><%= link_to "Horror", horror_path %></li>
+          <li><%= link_to "Musical", musical_path %></li>
+          <li><%= link_to "Mystery", mystery_path %></li>
+          <li><%= link_to "Romance", romance_path %></li>
+          <li><%= link_to "Sci-Fi", scifi_path %></li>
+          <li><%= link_to "Sport", sport_path %></li>
+        </ul>
+        <h4 data-translate="movies">My Profile</h4>
+        <ul class="categories">
+          <li><%= link_to "Watched", movies_path %></li>
+          <li><%= link_to "Recommendations", recommendations_path %></li>
+        </ul>
+        <h4 data-translate="movies"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></h4>
+        <h4 data-translate="movies">&copy;2014</h4>
+      </div>
+
+      <!-- Movie posters go here  -->
+      <section class="container">
+      <ul class="movie-list">
+          <% @popular.first(100).each do |movie| %>
+            <% if movie and movie['poster_path']%>
+              <li class="cover">
+                <%= link_to new_movie_path(:id => movie['id']) do %>
+                  <%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") if movie['poster_path'] %>
+                <% end %>
+                <p><%= movie['title']%></p>
+                <p style="margin-top:5px; font-weight:normal; color: #404040"><%= movie['release_date'][0, 4]%></p>
+              </li>
+            <% end %>
+          <% end %>
+          <% @top_rated.first(100).each do |movie| %>
+            <% if movie and movie['poster_path']%>
+              <li class="cover">
+                <%= link_to new_movie_path(:id => movie['id']) do %>
+                  <%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") if movie['poster_path'] %>
+                <% end %>
+                <p><%= movie['title']%></p>
+                <p style="margin-top:5px; font-weight:normal; color: #404040"><%= movie['release_date'][0, 4]%></p>
+              </li>
+            <% end %>
+          <% end %>
+          <% @now_playing.first(100).each do |movie| %>
+            <% if movie and movie['poster_path']%>
+              <li class="cover">
+                <%= link_to new_movie_path(:id => movie['id']) do %>
+                  <%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") if movie['poster_path'] %>
+                <% end %>
+                <p><%= movie['title']%></p>
+                <p style="margin-top:5px; font-weight:normal; color: #404040"><%= movie['release_date'][0, 4]%></p>
+              </li>
+            <% end %>
+          <% end %>
+          <% @upcoming.first(100).each do |movie| %>
+            <% if movie and movie['poster_path']%>
+              <li class="cover">
+                <%= link_to new_movie_path(:id => movie['id']) do %>
+                  <%= image_tag("#{@configuration.base_url}w154#{movie['poster_path']}") if movie['poster_path'] %>
+                <% end %>
+                <p><%= movie['title']%></p>
+                <p style="margin-top:5px; font-weight:normal; color: #404040"><%= movie['release_date'][0, 4]%></p>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </section> 
+
+    <% else %>
+
+      <div class="spinnerSmall"></div>
+      <div class="container">
+        <div class="container__content  centre--element  push--top-three-spaces">
+
+          <nav class="clearfix  max-width--960  centre--element visuallyhidden text--smaller">
+            <div class="float--right  text--uppercase  reduce-opacity--60">
+              <%= link_to "Sign up", new_user_registration_path %>
+            </div>
+          </nav>
+
+          <section class="main-text  push--top-five-spaces  text--centre">
+            <h1 class="main-text__heading visuallyhidden">whatmovieshouldiwat.ch?</h1>
+
+            <div class="main-text__cta">
+              <h2 class="visuallyhidden">Get ready, the show will start soon.</h2><br>
+              <%= link_to "Sign In", new_user_session_path, class: "button"%>
+            </div>
+          </section>
+
+          <section class="macbook  centre--element  position--fixed-bottom  no-button visuallyhidden">
+            <div class="macbook__frame">
+              <div class="macbook__screen">
+                <div class="slider">
+                  <ul class="slides  no-list-styling">
+                    <li class="slide"><%= image_tag "screenshot1.png" %></li>
+                    <li class="slide"><%= image_tag "screenshot2.png" %></li>
+                    <li class="slide"><%= image_tag "screenshot3.png" %></li>
+                    <li class="slide"><%= image_tag "screenshot4.png" %></li>
+                    <li class="slide"><%= image_tag "screenshot5.png" %></li>
+                  </ul>
+                </div>
+
+                <div class="slider-arrows">
+                  <a href="#" class="slider-arrow  slider-arrow--right" data-distance="1"></a>
+                  <a href="#" class="slider-arrow  slider-arrow--left" data-distance="-1"></a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- Background image -->
+      <div class="bg-wrapper visuallyhidden">
+        <%= image_tag "bg.jpg" , :class => "bg-wrapper__image" %>
+      </div>
+
+      <!-- JS scripts -->
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <%= javascript_include_tag "app.min.js" %>
+
+    <% end %>

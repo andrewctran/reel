@@ -1,0 +1,50 @@
+<sidebar>
+	<div class="play">
+	<div class="backdrop-image" style="background-image:url('http://image.tmdb.org/t/p/original<%= @film.backdrop_path %>');"></div>
+
+	<div class="movie-detail">
+	  <div class="closer">
+	    <%= link_to movies_path do %>
+	      <%= image_tag "close.svg", :size => '50' %>
+	    <% end %>
+	  </div>
+	  <div class="poster-cont">
+	    <div class="poster-inner">
+	      <div class="poster">
+	        <img class="big-poster" src="http://image.tmdb.org/t/p/w500<%= @film.poster_path %>" alt="<%= @film.title %>" />
+	      </div>
+	    </div>
+	  </div>
+	  <div class="side-content">
+	    <div class="title">
+	      <h2><%=@film.title%></h2>
+
+	      <ul class="movie-quick-info">
+	        <li>
+	          <%= @film.release_date[0,4]%>
+	        </li>
+	        <li>
+	            <span class="duration"><%=@film.runtime%> min</span>
+	        </li>
+	      </ul>
+	      <div class="rating">
+                <ul class="votes" title="<%= @movie.rating %> / 5">
+                  <% for i in 1..@movie.rating.floor %>
+                    <i class="fa fa-star"></i>
+                  <% end %>
+                  <% if (@movie.rating % 1 > 0) %>
+                    <i class="fa fa-star-half-o"></i>
+                  <% end %>
+                  <% for i in @movie.rating.ceil..4 %>
+                    <i class="fa fa-star-o"></i>
+                  <% end %>
+                </ul>
+           </div>
+	    </div>
+	    <p style="padding-bottom:5px;"><%=@film.overview%></p>
+	    <%= render 'form' %>
+	  </div>
+	</div>
+	</div>
+</sidebar>
+

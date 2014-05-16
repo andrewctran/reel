@@ -1,0 +1,42 @@
+<div class="spinnerSmall"></div>
+      <div class="container">
+        <div class="container__content  centre--element  push--top-three-spaces">
+
+          <nav class="clearfix  max-width--960  centre--element visuallyhidden text--smaller">
+            <a href="/" class="logo  float--left"><img src="http://www.squireapp.com/public/images/logo.svg" alt="squireapp logo"></a>
+            <div class="float--right  text--uppercase  reduce-opacity--60">
+              <%= link_to "Sign up", new_user_registration_path %>
+            </div>
+          </nav>
+
+          <section class="main-text  push--top-five-spaces  text--centre">
+            <h1 class="main-text__heading visuallyhidden">whatmovieshouldiwat.ch?</h1>
+
+            <div class="main-text__cta">
+              	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+					<div><%= f.label :email %><br />
+					<%= f.email_field :email, :autofocus => true %></div>
+
+					<div><%= f.label :password %><br />
+					<%= f.password_field :password %></div>
+
+					<% if devise_mapping.rememberable? -%>
+					  <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+					<% end -%>
+
+					<div><%= f.submit "Sign in" %></div>
+				<% end %><br>
+				<%= render "devise/shared/links" %>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Background image -->
+      <div class="bg-wrapper visuallyhidden">
+        <img src="http://www.squireapp.com/public/images/bg.jpg" class="bg-wrapper__image" />
+      </div>
+
+      <!-- JS scripts -->
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <script src="http://www.squireapp.com/public/scripts/app.min.js"></script>

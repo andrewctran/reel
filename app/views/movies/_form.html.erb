@@ -1,0 +1,24 @@
+<%= form_for(@movie) do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+      <% @movie.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <br>
+    <h6 style="padding-bottom:10px;">Rate this movie:</h6>
+    <%= f.select :rating, options_for_select([1, 2, 3, 4, 5], :selected => @movie.rating) %>
+    <%= f.hidden_field :tmdbid %>
+  </div>
+
+  <div class="actions">
+    <a class="p_tooltip play-button"><%= f.submit :style=>"width: 100%;color: #fff;background: transparent;border: none;font-size: 14px;padding: 14px 26px;margin: 0 0 0 0;text-transform: uppercase;letter-spacing: 1px;font-family: 'Helvetica Neue', sans-serif;"%></a>
+  </div>
+<% end %>

@@ -1,0 +1,58 @@
+<header id="header" style="position:fixed; z-index: 100;"></header>
+
+      <div id="notification"></div>
+
+      <div id="catalog-select" style="position:fixed;">
+        <div class="search">
+            <%= form_tag("/search", :method => "get") do %>
+              <%= text_field_tag(:query, nil, :placeholder => "Search") %>
+            <% end %>
+            <i class="fa fa-search"></i>
+        </div>
+
+        <h4 data-translate="movies">Movies</h4>
+        <ul class="categories">
+          <li><a href="/">Popular</a></li>
+          <li><%= link_to "Action", action_path %></li>
+          <li><%= link_to "Adventure", adventure_path %></li>
+          <li><%= link_to "Animation", animation_path %></li>
+          <li><%= link_to "Comedy", comedy_path %></li>
+          <li><%= link_to "Documentary", documentary_path %></li>
+          <li><%= link_to "Drama", drama_path %></li>
+          <li><%= link_to "Family", family_path %></li>
+          <li><%= link_to "Fantasy", fantasy_path %></li>
+          <li><%= link_to "Film-Noir", filmnoir_path %></li>
+          <li><%= link_to "Horror", horror_path %></li>
+          <li><%= link_to "Musical", musical_path %></li>
+          <li><%= link_to "Mystery", mystery_path %></li>
+          <li><%= link_to "Romance", romance_path %></li>
+          <li><%= link_to "Sci-Fi", scifi_path %></li>
+          <li><%= link_to "Sport", sport_path %></li>
+        </ul>
+        <h4 data-translate="movies">My Profile</h4>
+        <ul class="categories">
+          <li><%= link_to "Watched", movies_path %></li>
+          <li class="active"><%= link_to "Recommendations", recommendations_path %></li>
+        </ul>
+        <h4 data-translate="movies"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></h4>
+        <h4 data-translate="movies">&copy;2014</h4>
+      </div>
+
+      <!-- Movie posters go here  -->
+      <section class="container">
+      <ul class="movie-list">
+          <% @movie_predictions.each do |m_id, pred_rating| %>
+            <% mov = Tmdb::Movie.detail(m_id) %>
+            <% if mov and mov.poster_path%>
+              <li class="cover">
+                <%= link_to new_movie_path(:id => mov.id) do %>
+                  <%= image_tag("#{@configuration.base_url}w154#{mov.poster_path}") if mov.poster_path %>
+                <% end %>
+                <p><%= mov.title %></p>
+                <!-- <p style="margin-top:5px; font-weight:normal; color: #404040"><%= mov.release_date[0, 4]%></p> -->
+                <p style="margin-top:5px; font-weight:normal; color: #404040">Prediction:  <%= pred_rating%></p>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </section> 

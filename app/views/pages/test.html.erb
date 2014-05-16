@@ -1,0 +1,74 @@
+      <header id="header" style="position:fixed; z-index: 100;"></header>
+
+      <div id="notification"></div>
+
+      <div id="catalog-select" style="position:fixed;">
+        <div class="search">
+          <%= form_tag("/search", :method => "get") do %>
+              <%= text_field_tag(:query, nil, :placeholder => "Search") %>
+            <% end %>
+          <i class="fa fa-search"></i>
+        </div>
+
+        <h4 data-translate="movies">Movies</h4>
+        <ul class="categories">
+          <li class="active"><a href="/">Popular</a></li>
+          <li><a href="/">Action</a></li>
+          <li><a href="/">Adventure</a></li>
+          <li><a href="/">Animation</a></li>
+          <li><a href="/">Comedy</a></li>
+          <li><a href="/">Documentary</a></li>
+          <li><a href="/">Drama</a></li>
+          <li><a href="/">Family</a></li>
+          <li><a href="/">Fantasy</a></li>
+          <li><a href="/">Film-Noir</a></li>
+          <li><a href="/">Horror</a></li>
+          <li><a href="/">Musical</a></li>
+          <li><a href="/">Mystery</a></li>
+          <li><a href="/">Romance</a></li>
+          <li><a href="/">Sci-Fi</a></li>
+          <li><a href="/">Sport</a></li>
+        </ul>
+        <h4 data-translate="movies">My Profile</h4>
+        <ul class="categories">
+          <li><%= link_to "Watched", movies_path %></li>
+          <li><%= link_to "Recommendations", recommendations_path %></li>
+        </ul>
+        <h4 data-translate="movies"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></h4>
+        <h4 data-translate="movies">&copy;2014</h4>
+      </div>
+      <sidebar>
+      <div class="play">
+        <div class="backdrop-image" style="background-image:url('http://image.tmdb.org/t/p/original<%= @movie.backdrop_path %>');"></div>
+
+        <div class="movie-detail">
+          <div class="closer">
+            <%= link_to root_url do %>
+              <%= image_tag "close.svg", :size => '50' %>
+            <% end %>
+          </div>
+          <div class="poster-cont">
+            <div class="poster-inner">
+              <div class="poster">
+                <img class="big-poster" src="http://image.tmdb.org/t/p/w500<%= @movie.poster_path %>" alt="<%= @movie.title %>" />
+              </div>
+            </div>
+          </div>
+          <div class="side-content">
+            <div class="title">
+              <h2><%=@movie.title%></h2>
+
+              <ul class="movie-quick-info">
+                <li>
+                  <%= @movie.release_date[0,4]%>
+                </li>
+                <li>
+                    <span class="duration"><%=@movie.runtime%> min</span>
+                </li>
+              </ul>
+            </div>
+            <p><%=@movie.overview%></p>
+          </div>
+        </div>
+      </div>
+      </sidebar>
