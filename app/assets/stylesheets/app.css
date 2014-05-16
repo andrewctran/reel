@@ -2092,7 +2092,7 @@ body.watching #header, body.watching #notification, body.watching #catalog-selec
   z-index: 10;
 }
 
-a:visited {
+a:visited, a:link, a:hover, a:active {
   color: #404040;
 }
 
