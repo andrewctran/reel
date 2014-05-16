@@ -13,10 +13,10 @@
             <div class="main-text__cta">
               	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 					<div>
-					<%= f.email_field :email, :autofocus => true, :style => "border-radius:21px; height:30px; width: 170px; border:none; padding:6px 12px; font-size:14px; margin-bottom:15px; margin-top:7%; outline:none;", :placeholder => "Email" %></div>
+					<%= f.email_field :email, :autofocus => true, :style => "border-radius:21px; height:30px; width: 170px; border:none; padding:6px 12px; font-size:14px; margin-bottom:15px; margin-top:7%; outline:none;opacity: 0.5;background-color: #222;color: #fff;", :placeholder => "Email" %></div>
 
 					<div>
-					<%= f.password_field :password, :style => "border-radius:21px; height:30px; width: 170px; border:none; padding:6px 12px; font-size:14px; margin-bottom:15px; outline:none;", :placeholder => "Password" %></div>
+					<%= f.password_field :password, :style => "border-radius:21px; height:30px; width: 170px; border:none; padding:6px 12px; font-size:14px; margin-bottom:15px; outline:none;opacity: 0.5;background-color: #222;color: #fff;", :placeholder => "Password" %></div>
 
 					<% if devise_mapping.rememberable? -%>
 					  <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
