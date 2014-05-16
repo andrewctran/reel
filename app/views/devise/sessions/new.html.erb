@@ -3,28 +3,26 @@
         <div class="container__content  centre--element  push--top-three-spaces">
 
           <nav class="clearfix  max-width--960  centre--element visuallyhidden text--smaller">
-            <a href="/" class="logo  float--left"><img src="http://www.squireapp.com/public/images/logo.svg" alt="squireapp logo"></a>
             <div class="float--right  text--uppercase  reduce-opacity--60">
               <%= link_to "Sign up", new_user_registration_path %>
             </div>
           </nav>
 
           <section class="main-text  push--top-five-spaces  text--centre">
-            <h1 class="main-text__heading visuallyhidden">whatmovieshouldiwat.ch?</h1>
 
             <div class="main-text__cta">
               	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-					<div><%= f.label :email %><br />
-					<%= f.email_field :email, :autofocus => true %></div>
+					<div>
+					<%= f.email_field :email, :autofocus => true, :style => "border-radius:21px; height:30px; width: 170px; border:none; padding:6px 12px; font-size:14px; margin-bottom:15px; margin-top:7%; outline:none;", :placeholder => "Email" %></div>
 
-					<div><%= f.label :password %><br />
-					<%= f.password_field :password %></div>
+					<div>
+					<%= f.password_field :password, :style => "border-radius:21px; height:30px; width: 170px; border:none; padding:6px 12px; font-size:14px; margin-bottom:15px; outline:none;", :placeholder => "Password" %></div>
 
 					<% if devise_mapping.rememberable? -%>
 					  <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
 					<% end -%>
 
-					<div><%= f.submit "Sign in" %></div>
+					<div><%= f.submit "Sign in", :style => "-webkit-appearance: none;outline: 0;border: 0;padding: 9.23077px 24px 13.2px;font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,sans-serif;border-radius: 36px;display: inline-block;text-decoration: none!important;-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.33);-moz-box-shadow: 0 1px 4px rgba(0,0,0,.33);box-shadow: 0 1px 4px rgba(0,0,0,.33);text-shadow: 0 -1px 1px rgba(0,0,0,.5);-webkit-transition: all .2s ease-in-out;-moz-transition: all .2s ease-in-out;-o-transition: all .2s ease-in-out;transition: all .2s ease-in-out;font-size: 1.3em;color: #fff;background: #50c1f6;background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#50c1f6),color-stop(100%,#009be4));background-image: -webkit-linear-gradient(#50c1f6,#009be4);background-image: -moz-linear-gradient(#50c1f6,#009be4);background-image: -o-linear-gradient(#50c1f6,#009be4);background-image: linear-gradient(#50c1f6,#009be4); width:194px; margin-top:30px;" %></div>
 				<% end %><br>
 				<%= render "devise/shared/links" %>
             </div>
@@ -34,9 +32,9 @@
 
       <!-- Background image -->
       <div class="bg-wrapper visuallyhidden">
-        <img src="http://www.squireapp.com/public/images/bg.jpg" class="bg-wrapper__image" />
+        <%= image_tag "bg.jpg" , :class => "bg-wrapper__image" %>
       </div>
 
       <!-- JS scripts -->
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-      <script src="http://www.squireapp.com/public/scripts/app.min.js"></script>
+      <%= javascript_include_tag "app.min.js" %>
